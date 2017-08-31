@@ -6,5 +6,5 @@
     android:searchSuggestAuthority="pl.edu.pb.wi.projekt.barcodereader"
     android:searchSuggestIntentAction="android.intent.action.VIEW"
     android:searchSuggestPath="DEVICES"
-    android:searchSuggestSelection="INVENTORY_NUMBER LIKE ?||'%'"
+    android:searchSuggestSelection="SERIAL_NUMBER LIKE ?||'%'"
     android:searchSuggestThreshold="3" />

@@ -5,6 +5,8 @@
  */
 package pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.decoder;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +16,8 @@ import java.util.Map;
  * @author Mateusz
  */
 class EAN13Decoder implements IDecoder {
-    private static int MAX_ALTER = 6;
-    private static int MIN_DISTANCE = 3;
+    private static int MAX_ALTER = 2;
+    private static int MIN_DISTANCE = 1;
     //zbiory znaków dla wszystkich kodowań
     private Map<String, Integer> setA, setB, setC, parity, sentinel;
     // aktualnie przetwarzany zbiór
@@ -207,7 +209,6 @@ class EAN13Decoder implements IDecoder {
                 if (items.get(0) == 1) {
                 }
             }
-
             if (results.isEmpty()) {
                 return null;
             } else {
@@ -216,7 +217,7 @@ class EAN13Decoder implements IDecoder {
                 }
                 result.deleteCharAt(result.length() - 1);
             }
-            if (result.toString().split(" ").length > 8) return null;
+            if (result.toString().split(" ").length > 1) return null;
             return result.toString();
         }
     }
@@ -228,9 +229,11 @@ class EAN13Decoder implements IDecoder {
      * @return zakodowana wartość
      */
     public String decode(String barcode) {
+        Log.e("EAN13", barcode);
         if (barcode.length() != 59) { // 4*12+2*3+5 = 48+6+5=59
             return null; // zabezpiecznie przed ciągami, którch nie da się odczytać Start+znak+sumaKontrolna+Stop
         }
+        Log.e("EAN13", "Correct length");
         List<String> res = new ArrayList<>();
         res.add(barcode.substring(0, 3)); // lewy sentinel
         int position;
@@ -284,6 +287,7 @@ class EAN13Decoder implements IDecoder {
         } else {
             items = getAlternatives(code, set);
         }
+        Log.e("EAN13",items.toString());
         return items;
     }
 

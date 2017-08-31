@@ -126,6 +126,7 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
 
         if (Utils.checkDatabaseAvailable(this) && searchItem != null) {
             searchItem.setEnabled(true);
+            invalidateOptionsMenu();
         }
     }
 

@@ -12,7 +12,7 @@ public class Scanner {
     private IDecoder decoder;
 
     public Scanner() {
-        decoder = new Decoder();
+        decoder = new EAN13Decoder();
     }
 
     /**

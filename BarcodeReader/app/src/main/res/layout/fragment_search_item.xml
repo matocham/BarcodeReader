@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="0dp"
+    android:orientation="vertical"
+    tools:context="pl.edu.pb.wi.projekt.barcodereader.fragments.SearchItemFragment">
+
+    <TextView
+        android:id="@+id/query_result_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/colorAccent"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/query_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_information_available"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/colorPrimaryDark"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_vertical_margin">
+
+        <LinearLayout
+            android:id="@+id/barcode_containter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <Button
+                android:id="@+id/button"
+                android:layout_width="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:text="@string/show_more"
+                style="@style/button_style"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="@string/prefs_camera_group_key"
+        android:title="@string/prefs_camera_group_name">
+        <ListPreference
+            android:defaultValue="@string/prefs_default_value"
+            android:dialogTitle="Tryb autofocus"
+            android:key="@string/prefs_camera_autofocus_key"
+            android:summary="@string/prefs_default_value"
+            android:title="@string/prefs_camera_autofocus_name" />
+
+        <ListPreference
+            android:defaultValue="@string/prefs_default_value"
+            android:dialogTitle="Tryb lampy błyskowej"
+            android:key="@string/prefs_camera_torch_key"
+            android:summary="@string/prefs_default_value"
+            android:title="@string/prefs_camera_torch_name" />
+
+        <ListPreference
+            android:defaultValue="@string/prefs_default_value"
+            android:dialogTitle="@string/prefs_camera_picture_size_name"
+            android:key="@string/prefs_camera_picture_size_key"
+            android:summary="@string/prefs_default_value"
+            android:title="@string/prefs_camera_picture_size_name" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="@string/prefs_storage_group_key"
+        android:title="@string/prefs_storage_group_name">
+
+        <Preference
+            android:defaultValue="@string/prefs_storage_default"
+            android:key="@string/prefs_storage_source_key"
+            android:title="@string/prefs_storage_source_name"></Preference>
+
+        <Preference
+            android:defaultValue="@string/prefs_storage_default"
+            android:key="@string/prefs_database_get_online_key"
+            android:title="@string/prefs_database_get_online_title"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/prefs_key_account_group"
+        android:title="@string/prefs_name_account_group">
+        <EditTextPreference
+            android:defaultValue=""
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="Adres serwera"
+            android:key="@string/prefs_key_server_address" />
+
+        <Preference
+            android:defaultValue="@string/prefs_storage_default"
+            android:key="@string/prefs_account_reset_def"
+            android:title="@string/prefs_account_reset_title"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

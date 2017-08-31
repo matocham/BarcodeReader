@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">Barcode Reader</string>
+    <string name="title_activity_menu">Barcode Reader</string>
+    <string name="take_picture">Take picture</string>
+    <string name="title_activity_app_settings">Ustawienia</string>
+
+    <string name="prefs_title">Ustawienia</string>
+
+    <string name="prefs_camera_group_name">Ustawienia aparatu</string>
+    <string name="prefs_camera_group_key">pref_key_camera_group</string>
+
+    <string name="prefs_storage_group_name">Baza danych</string>
+    <string name="prefs_storage_group_key">pref_key_storage_group</string>
+
+    <string name="prefs_storage_source_name">Załaduj bazę danych</string>
+    <string name="prefs_storage_source_key">pref_key_database</string>
+    <string name="prefs_storage_default">none</string>
+
+    <string name="prefs_camera_autofocus_name">Autofocus</string>
+    <string name="prefs_camera_autofocus_key">pref_key_autofocus</string>
+
+    <string name="prefs_camera_torch_name">Latarka</string>
+    <string name="prefs_camera_torch_key">pref_key_torch</string>
+
+    <string name="prefs_camera_picture_size_name">Rozmiar zdjęcia</string>
+    <string name="prefs_camera_picture_size_key">pref_key_picture_size</string>
+    <string name="prefs_default_value">unselected</string>
+    <string name="search_hint">Search barcode</string>
+    <string name="hint_search">Szukaj kodu</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_results">Brak wyników</string>
+    <string name="no_information_available">Brak danych</string>
+    <string name="extension_error_title">Nieprawidłowy plik</string>
+    <string name="extension_error_message">Wskazany plik ma nieprawiłowe rozszerzenie</string>
+    <string name="setting_camera_acces_required">Brak uprawnień</string>
+    <string name="setting_camera_acces_required_msg">Dla poprawnego działania aplikacja wymaga dostępu do aparatu.</string>
+    <string name="zxing_prompt">Skanuj kod</string>
+    <string name="details">Szczegóły</string>
+    <string name="show_detailed_result">Pokaż szczegóły</string>
+    <string name="show_more">Więcej</string>
+    <string name="show_less">Mniej</string>
+    <string name="user_verified">userVerified</string>
+    <string name="internet_required_title">Brak dostępu do internetu</string>
+    <string name="internet_required_message">Aby przeprowadzić logowanie wymagane jest połączenie z internetem</string>
+    <string name="prefs_database_get_online_key">download_online</string>
+    <string name="prefs_database_get_online_title">Pobierz bazę online</string>
+    <string name="no_internet_permission_settings_title">Brak dostępu do internetu</string>
+    <string name="no_internet_permission_settings_message">Aby pobrać bazę danych online musisz umożliwić dla aplikacji korzystanie z internetu</string>
+    <string name="username_pref_key">username</string>
+    <string name="password_pref_key">password</string>
+    <string name="downloaded_online">Pobrano online</string>
+    <string name="cant_load_camera">Wystąpił problem podczas pozyskiwania aparatu</string>
+    <string name="database_summary_start">Baza </string>
+    <string name="database_summary_second">" z dnia "</string>
+    <string name="connection_error">Błąd połączenia</string>
+    <string name="copy_error">Błąd kopiowania</string>
+    <string name="file_send_error">Błąd przesułu danych</string>
+    <string name="connection_timeout">Przekroczono limit czasu oczekiwania</string>
+    <string name="no_internet">Brak połączenia z internetem</string>
+    <string name="load_database_error">Nie udało się załadować bazy danych</string>
+    <string name="server_connection_error">Wystąpił błąd podczas komunikacji z serwerem</string>
+    <string name="no_database">Brak bazy danych</string>
+    <string name="search_activity_label">Wyniki wyszukiwania</string>
+    <string name="project_info">Projekt zrealizowano w ramach pracy dyplomowej na Politechnice Białostockiej</string>
+    <string name="login_unsuccessfull">Logowanie nie powiodło się</string>
+    <string name="login_unsuccessfull_message">Aby korzystać z tej aplikacji musisz się zalogować!</string>
+    <string name="data_loading">Ładownie danych</string>
+    <string name="please_wait">Proszę czekać ...</string>
+    <string name="login_dialog_title">Logowanie</string>
+    <string name="downloading_database">Pobieranie bazy danych</string>
+    <string name="prefs_key_account_group">account_group</string>
+    <string name="prefs_name_account_group">Konto</string>
+    <string name="prefs_key_server_address">prefs_key_server_address</string>
+    <string name="prefs_account_reset_def">account_reset_defaults</string>
+    <string name="prefs_account_reset_title">Resetuj dane użytkownika</string>
+    <string name="dialog_acconut_reset_title">Resetowanie ustawień</string>
+    <string name="dialog_account_reset_message">Ustawienia zresetwoano pomyślnie. Uruchom aplikację ponowonie aby się zalogować</string>
+    <string name="no_server_address_title">Nie podano adresu serwera</string>
+    <string name="no_server_title_message">Aby korzystać z aplikacji należy podać adres serwera i się zalogować</string>
+    <string name="server_address_dialog_title">Konfiguracja serwera</string>
+    <string name="address_check_dialog_title">Sprawdzanie adresu serwera</string>
+    <string name="provide_address">Wprowadź adres serwera</string>
+    <string name="bad_address_error_message">Wprowadzony adres jest nieprawidłowy. Upewnij się, że masz połączenie z internetem i spróbuj ponownie</string>
+
+    <string name="table_not_found">Nie znaleziono tabeli o nazwie %1$s. Upewnij się, że baza danych jest prawiłowa</string>
+    <string name="column_not_found">Nie znaleziono kolumny o nazwie %1$s w tabeli %2$s. Upewnij się, że baza danych jest prawiłowa</string>
+    <string name="validate_error">Błąd walidacji bazy danych</string>
+    <string name="auth_error_title">Błąd autoryzacji</string>
+    <string name="auth_error_message">Nie masz uprawnień aby pobrać bazę danych</string>
+    <string name="prefs_key_server_set">server_address_set</string>
+    <string name="download_ok_message">Pobieranie bazy zakończyło się sukcesem</string>
+    <string name="download_ok_title">Pobrano bazę online</string>
+</resources>

@@ -35,26 +35,5 @@
             android:key="@string/prefs_storage_source_key"
             android:title="@string/prefs_storage_source_name"></Preference>
 
-        <Preference
-            android:defaultValue="@string/prefs_storage_default"
-            android:key="@string/prefs_database_get_online_key"
-            android:title="@string/prefs_database_get_online_title"/>
-
     </PreferenceCategory>
-    <PreferenceCategory
-        android:key="@string/prefs_key_account_group"
-        android:title="@string/prefs_name_account_group">
-        <EditTextPreference
-            android:defaultValue=""
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:title="Adres serwera"
-            android:key="@string/prefs_key_server_address" />
-
-        <Preference
-            android:defaultValue="@string/prefs_storage_default"
-            android:key="@string/prefs_account_reset_def"
-            android:title="@string/prefs_account_reset_title"/>
-    </PreferenceCategory>
-
 </PreferenceScreen>

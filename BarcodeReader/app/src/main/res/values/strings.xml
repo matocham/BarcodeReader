@@ -89,6 +89,4 @@
     <string name="auth_error_title">Błąd autoryzacji</string>
     <string name="auth_error_message">Nie masz uprawnień aby pobrać bazę danych</string>
     <string name="prefs_key_server_set">server_address_set</string>
-    <string name="download_ok_message">Pobieranie bazy zakończyło się sukcesem</string>
-    <string name="download_ok_title">Pobrano bazę online</string>
 </resources>

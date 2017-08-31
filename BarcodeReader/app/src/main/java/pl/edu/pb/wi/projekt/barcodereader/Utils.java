@@ -109,50 +109,9 @@ public class Utils {
         return sharedPref.getBoolean(context.getResources().getString(R.string.user_verified), false);
     }
 
-    public static void setUserVerified(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putBoolean(context.getString(R.string.user_verified), true).commit();
-    }
-
-    public static boolean checkServerSet(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        boolean serverAddressSet = sharedPref.getBoolean(context.getResources().getString(R.string.prefs_key_server_set), false);
-        Log.e(TAG,"Is server address set? "+serverAddressSet);
-        return serverAddressSet;
-    }
-
-    public static void setServerSet(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putBoolean(context.getResources().getString(R.string.prefs_key_server_set), true).commit();
-    }
-
     public static void resetUserData(Context context) {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPref.edit().putBoolean(context.getResources().getString(R.string.user_verified), false).commit();
-    }
-
-    public static void setServerAddress(Context context, String address) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putString(context.getResources().getString(R.string.prefs_key_server_address), address).commit();
-    }
-
-    public static void saveUserCredentials(Context context, String username, String password){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putString(context.getString(R.string.username_pref_key),username)
-                .putString(context.getString(R.string.password_pref_key),encrypt(password)).commit();
-    }
-
-    public static String getServerAuthority(Context context){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPref.getString(context.getString(R.string.prefs_key_server_address),"");
-    }
-
-    public static String[] getUserCredentials(Context context){
-        String cridentials []= new String[2];
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        cridentials[0] = sharedPref.getString(context.getString(R.string.username_pref_key),"");
-        cridentials[1] = sharedPref.getString(context.getString(R.string.password_pref_key),"");
-        return cridentials;
     }
 
     public static AlertDialog showProgressDialog(Context context, String title, String message) {
@@ -211,33 +170,6 @@ public class Utils {
         return msg;
     }
 
-    public static boolean getNetworkStatus(Context context) {
-        ConnectivityManager connMgr = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
-    }
-
-    /**
-     * write user credentials to request body
-     * @param context
-     * @param outputStream
-     */
-    public static void fillSendData(Context context, OutputStream outputStream) {
-        String userInfo[] = getUserCredentials(context);
-        JSONObject obj = new JSONObject();
-
-        try {
-            obj.put("login", userInfo[0]);
-            obj.put("password", userInfo[1]);
-            outputStream.write(obj.toString().getBytes(Charset.forName("UTF-8")));
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
 
     public static boolean checkCameraHardware(Context context) {
         return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA);
@@ -278,22 +210,6 @@ public class Utils {
             activity.finish();
         }
         return camera;
-    }
-
-    public static String encrypt(String text) {
-        MessageDigest md = null;
-        StringBuilder stringBuffer = new StringBuilder();
-        try {
-            md = MessageDigest.getInstance("SHA");
-        } catch (NoSuchAlgorithmException e) {
-            System.err.println(e.getMessage());
-        }
-        md.update(text.getBytes());
-        byte[] messageDigest = md.digest();
-        for (byte bytes : messageDigest) {
-            stringBuffer.append(String.format("%02x", bytes & 0xff));
-        }
-        return stringBuffer.toString();
     }
 
     public static void checkDatabaseSchema(SQLiteDatabase database) throws TableNotFoundException, ColumnNotFoundException {
@@ -344,7 +260,6 @@ public class Utils {
         byte[] buffer = new byte[1024];
         int length;
         while ((length = in.read(buffer)) > 0) {
-            Log.e(TAG,new String(buffer));
             out.write(buffer, 0, length);
         }
     }
@@ -352,7 +267,11 @@ public class Utils {
     public static void copy(File in, File out) throws IOException {
         InputStream is= new FileInputStream(in);
         OutputStream os = new FileOutputStream(out);
-        copy(is, os);
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = is.read(buffer)) > 0) {
+            os.write(buffer, 0, length);
+        }
         is.close();
         os.close();
     }

@@ -151,7 +151,7 @@ public final class Contract {
                 Sections.getNameWithDB(Sections.COLUMN_ID);
 
         public static final String COLUMN_ID = Devices.getNameWithDB(Devices.COLUMN_ID);
-        public static final String COLUMN_CODE = Devices.getNameWithDB(Devices.COLUMN_SERIAL_NR);
+        public static final String COLUMN_CODE = Devices.getNameWithDB(Devices.COLUMN_INVENTARY_NR);
 
         public static final String[] PROJECTION_ALL =
                 {

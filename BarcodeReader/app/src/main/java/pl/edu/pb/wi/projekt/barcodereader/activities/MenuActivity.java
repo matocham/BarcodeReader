@@ -7,10 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -21,22 +19,15 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import pl.edu.pb.wi.projekt.barcodereader.fragments.ServerAddressDialogFragment;
-import pl.edu.pb.wi.projekt.barcodereader.interfaces.OnLoginSuccessListener;
 import pl.edu.pb.wi.projekt.barcodereader.R;
 import pl.edu.pb.wi.projekt.barcodereader.Utils;
-import pl.edu.pb.wi.projekt.barcodereader.fragments.LoginDialogFragment;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.MenuFragment;
-import pl.edu.pb.wi.projekt.barcodereader.interfaces.OnServerAddressInput;
 
-public class MenuActivity extends AppCompatActivity implements MenuFragment.ListClickListener, OnLoginSuccessListener, OnServerAddressInput {
+public class MenuActivity extends AppCompatActivity implements MenuFragment.ListClickListener {
     public static final int REQUEST_CAMERA_CODE = 11;
-    public static final int REQUEST_INTERNET_CODE = 12;
 
     private MenuItem searchItem;
 
@@ -51,16 +42,6 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
         }
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-
-        if(!Utils.checkUserVerified(this)){
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET},
-                        REQUEST_INTERNET_CODE);
-            } else{
-                getServerAddresss();
-            }
-        }
     }
 
     @Override
@@ -68,9 +49,9 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
         getMenuInflater().inflate(R.menu.search_menu, menu);
 
         searchItem = menu.findItem(R.id.search);
-        if(Utils.checkDatabaseAvailable(this)){
+        if (Utils.checkDatabaseAvailable(this)) {
             searchItem.setVisible(true);
-        } else{
+        } else {
             searchItem.setVisible(false);
         }
         if (Utils.checkDatabaseAvailable(this)) {
@@ -102,22 +83,6 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    private void getServerAddresss(){
-        if(Utils.checkServerSet(this)){
-            showLoginDialog();
-        }else{
-            FragmentManager fm = getSupportFragmentManager();
-            ServerAddressDialogFragment serverDialogFragment = ServerAddressDialogFragment.getInstance(this);
-            serverDialogFragment.show(fm, "fragment_server");
-        }
-    }
-
-    private void showLoginDialog() {
-        FragmentManager fm = getSupportFragmentManager();
-        LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance(this);
-        loginDialogFragment.show(fm, "fragment_login");
     }
 
     @Override
@@ -164,33 +129,6 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
                 Utils.showCloseDialog(this, getString(R.string.setting_camera_acces_required),
                         getString(R.string.setting_camera_acces_required_msg));
             }
-        } else if(requestCode == REQUEST_INTERNET_CODE){
-            if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                findViewById(R.id.fragment1).setEnabled(false);
-                Utils.showCloseDialog(this,getString(R.string.internet_required_title) ,
-                        getString(R.string.internet_required_message));
-            } else{
-                getServerAddresss();
-            }
-        }
-    }
-    @Override
-    public void onLoginEnd(boolean success) {
-        if(success){
-            Utils.setUserVerified(this);
-        } else{
-            Utils.showCloseDialog(this,getString(R.string.login_unsuccessfull), getString(R.string.login_unsuccessfull_message));
-        }
-    }
-
-    @Override
-    public void serverAddressSet(String address) {
-        if(address == null){
-            Utils.showCloseDialog(this,getString(R.string.no_server_address_title), getString(R.string.no_server_title_message));
-        } else {
-            Utils.setServerAddress(this,address);
-            Utils.setServerSet(this);
-            showLoginDialog();
         }
     }
 }

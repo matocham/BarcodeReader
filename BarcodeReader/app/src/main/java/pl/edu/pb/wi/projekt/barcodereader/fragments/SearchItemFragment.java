@@ -1,8 +1,10 @@
 package pl.edu.pb.wi.projekt.barcodereader.fragments;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentUris;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
 import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.activities.AddItemActivity;
 import pl.edu.pb.wi.projekt.barcodereader.activities.SearchActivity;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 
@@ -33,12 +36,15 @@ import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 public class SearchItemFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String DEFAULT_VALUE = "-1";
+    public static final String CREATE_ITEM_ACTION = "CREATE_ITEM";
+    public static final String BARCODE_KEY = "CODE";
     private static final int URL_LOADER = 5;
     private Map<String, String> columns;
     private String barcodeInfo;
     private LinearLayout content;
     private TextView failView;
     private TextView failViewText;
+    private Button addButton;
     private AlertDialog dialog;
     private Button buttonMore;
 
@@ -90,6 +96,13 @@ public class SearchItemFragment extends Fragment implements LoaderManager.Loader
         content = (LinearLayout) root.findViewById(R.id.barcode_containter);
         failView = (TextView) root.findViewById(R.id.query_result);
         failViewText = (TextView) root.findViewById(R.id.query_result_text);
+        addButton = (Button) root.findViewById(R.id.addNewButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCreateActivity();
+            }
+        });
 
         buttonMore = (Button) content.findViewById(R.id.button);
         buttonMore.setOnClickListener(new View.OnClickListener() {
@@ -150,6 +163,7 @@ public class SearchItemFragment extends Fragment implements LoaderManager.Loader
             failView.setVisibility(View.VISIBLE);
             failViewText.setText(barcodeInfo);
             failViewText.setVisibility(View.VISIBLE);
+            addButton.setVisibility(View.VISIBLE);
         }
     }
 
@@ -204,5 +218,13 @@ public class SearchItemFragment extends Fragment implements LoaderManager.Loader
         if(dialog!= null && dialog.isShowing()){
             dialog.dismiss();
         }
+    }
+
+    private void showCreateActivity(){
+        // todo start activity
+        Intent createNewItemIntent = new Intent(getContext(),AddItemActivity.class);
+        createNewItemIntent.setAction(CREATE_ITEM_ACTION);
+        createNewItemIntent.putExtra(BARCODE_KEY,barcodeInfo);
+        startActivity(createNewItemIntent);
     }
 }

@@ -26,6 +26,14 @@
         android:textColor="@color/colorPrimaryDark"
         android:visibility="gone" />
 
+    <Button
+        android:id="@+id/addNewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/button_style"
+        android:visibility="gone"
+        android:text="Button" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

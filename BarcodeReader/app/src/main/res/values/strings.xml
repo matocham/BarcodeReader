@@ -91,4 +91,14 @@
     <string name="prefs_key_server_set">server_address_set</string>
     <string name="download_ok_message">Pobieranie bazy zakończyło się sukcesem</string>
     <string name="download_ok_title">Pobrano bazę online</string>
+    <string name="device_name">Device name</string>
+    <string name="serial_number">Serial number</string>
+    <string name="part_name">Part Name</string>
+    <string name="part_value">Part Value</string>
+    <string name="buy_date">Buy date</string>
+    <string name="price">Price</string>
+    <string name="amount">Amount</string>
+    <string name="location">Location</string>
+    <string name="comments">Comments</string>
+    <string name="add_item_button_text">Add item</string>
 </resources>

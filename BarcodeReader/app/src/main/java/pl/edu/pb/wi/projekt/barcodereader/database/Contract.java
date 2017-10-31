@@ -39,31 +39,21 @@ public final class Contract {
             /**
              * The content URI for this tableName.
              */
-            public static final Uri CONTENT_URI =
-                    Uri.withAppendedPath(
-                            Contract.Devices.CONTENT_URI,
-                            LAST_PATH_SEGMENT);
+            public static final Uri CONTENT_URI = Uri.withAppendedPath(Contract.Devices.CONTENT_URI, LAST_PATH_SEGMENT);
         }
 
         /**
          * The content URI for this tableName.
          */
-        public static final Uri CONTENT_URI =
-                Uri.withAppendedPath(
-                        Contract.CONTENT_URI,
-                        TABLE_NAME);
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(Contract.CONTENT_URI, TABLE_NAME);
         /**
          * The mime type of a directory of items.
          */
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
         /**
          * The mime type of a single item.
          */
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
         /**
          * A projection of all columns
          * in the items tableName.
@@ -90,21 +80,15 @@ public final class Contract {
         public static final String COLUMN_LAST_NAME = "SURNAME";
         public static final String COLUMN_PASSWORD = "PASSWORD";
 
-        public static final Uri CONTENT_URI =
-                Uri.withAppendedPath(
-                        Contract.CONTENT_URI,
-                        TABLE_NAME);
+        public static final String LAST_PATH_SEGMENT = "persons";
 
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(Contract.CONTENT_URI, LAST_PATH_SEGMENT);
 
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
 
-        public static final String[] PROJECTION_ALL =
-                {COLUMN_ID, COLUMN_FIRST_NAME, COLUMN_LAST_NAME, COLUMN_PASSWORD};
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+
+        public static final String[] PROJECTION_ALL = {COLUMN_ID, COLUMN_FIRST_NAME, COLUMN_LAST_NAME, COLUMN_PASSWORD};
 
         public static final String SORT_ORDER_DEFAULT =
                 COLUMN_FIRST_NAME + " ASC";
@@ -119,24 +103,17 @@ public final class Contract {
         public static final String COLUMN_ID = "SECTION_ID";
         public static final String COLUMN_NAME = "NAME";
 
-        public static final Uri CONTENT_URI =
-                Uri.withAppendedPath(
-                        Contract.CONTENT_URI,
-                        TABLE_NAME);
+        public static final String LAST_PATH_SEGMENT = "sections";
 
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(Contract.CONTENT_URI, LAST_PATH_SEGMENT);
 
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + TABLE_NAME;
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
 
-        public static final String[] PROJECTION_ALL =
-                {COLUMN_ID, COLUMN_NAME};
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd." + AUTHORITY + "_" + TABLE_NAME;
 
-        public static final String SORT_ORDER_DEFAULT =
-                COLUMN_NAME + " ASC";
+        public static final String[] PROJECTION_ALL = {COLUMN_ID, COLUMN_NAME};
+
+        public static final String SORT_ORDER_DEFAULT = COLUMN_NAME + " ASC";
 
         public static String getNameWithDB(String column) {
             return TABLE_NAME + "." + column;
@@ -190,18 +167,11 @@ public final class Contract {
 
         public static final String LAST_PATH_SEGMENT = "summary";
 
-        public static final Uri CONTENT_URI =
-                Uri.withAppendedPath(
-                        Contract.CONTENT_URI,
-                        LAST_PATH_SEGMENT);
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(Contract.CONTENT_URI, LAST_PATH_SEGMENT);
 
-        public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + LAST_PATH_SEGMENT;
+        public static final String CONTENT_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/vnd." + AUTHORITY + "_" + LAST_PATH_SEGMENT;
 
-        public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE +
-                        "/vnd." + AUTHORITY + "_" + LAST_PATH_SEGMENT;
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/vnd." + AUTHORITY + "_" + LAST_PATH_SEGMENT;
 
         public static final String[] getAliasedProjection() {
             String[] proj = new String[PROJECTION_ALL.length];

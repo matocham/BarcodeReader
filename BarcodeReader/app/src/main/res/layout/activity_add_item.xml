@@ -23,7 +23,7 @@
                 android:text="InventoryNumber" />
 
             <EditText
-                android:id="@+id/inventaryName"
+                android:id="@+id/inventoryName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -48,15 +48,6 @@
                 android:hint="@string/part_name"
                 android:inputType="text"
                 android:text="partName" />
-
-            <EditText
-                android:id="@+id/partValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/part_value"
-                android:inputType="text"
-                android:text="Part value" />
 
             <EditText
                 android:id="@+id/addedDate"

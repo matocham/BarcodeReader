@@ -52,15 +52,15 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
 
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
-        if(!Utils.checkUserVerified(this)){
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
-                    != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET},
-                        REQUEST_INTERNET_CODE);
-            } else{
-                getServerAddresss();
-            }
-        }
+//        if(!Utils.checkUserVerified(this)){
+//            if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET)
+//                    != PackageManager.PERMISSION_GRANTED) {
+//                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET},
+//                        REQUEST_INTERNET_CODE);
+//            } else{
+//                getServerAddresss();
+//            }
+//        }
     }
 
     @Override
@@ -164,7 +164,7 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
                 Utils.showCloseDialog(this, getString(R.string.setting_camera_acces_required),
                         getString(R.string.setting_camera_acces_required_msg));
             }
-        } else if(requestCode == REQUEST_INTERNET_CODE){
+        } /*else if(requestCode == REQUEST_INTERNET_CODE){
             if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                 findViewById(R.id.fragment1).setEnabled(false);
                 Utils.showCloseDialog(this,getString(R.string.internet_required_title) ,
@@ -172,7 +172,7 @@ public class MenuActivity extends AppCompatActivity implements MenuFragment.List
             } else{
                 getServerAddresss();
             }
-        }
+        }*/
     }
     @Override
     public void onLoginEnd(boolean success) {

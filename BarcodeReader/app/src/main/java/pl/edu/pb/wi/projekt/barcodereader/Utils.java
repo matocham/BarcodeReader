@@ -175,6 +175,17 @@ public class Utils {
         alertDialog.show();
     }
 
+    public static void showInfoDialog(Context context, String title, String message, DialogInterface.OnClickListener okActionHandler) {
+        AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setCancelable(false);
+        alertDialog.setCanceledOnTouchOutside(false);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                okActionHandler);
+        alertDialog.show();
+    }
+
     /**
      * shows dialog that close activity after acceptance
      * @param context context where to display dialog

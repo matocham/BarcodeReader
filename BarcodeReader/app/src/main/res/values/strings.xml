@@ -101,4 +101,6 @@
     <string name="location">Location</string>
     <string name="comments">Comments</string>
     <string name="add_item_button_text">Add item</string>
+    <string name="validation_dialog_title">Validation failure</string>
+    <string name="item_added_message">Item added</string>
 </resources>

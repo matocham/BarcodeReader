@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
     tools:context=".activities.AddItemActivity">
 
     <android.support.v4.widget.NestedScrollView
@@ -21,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/colorAccent"
-                android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
             <EditText
                 android:id="@+id/inventoryName"
@@ -47,14 +49,12 @@
                 android:inputType="text"
                 style="@style/textedit_style"/>
 
-            <EditText
+            <Button
                 android:id="@+id/addedDate"
                 android:layout_width="match_parent"
                 android:ems="10"
                 android:hint="@string/buy_date"
-                android:inputType="date"
-                style="@style/textedit_style"
-                android:enabled="false"/>
+                style="@style/textedit_style"/>
 
             <EditText
                 android:id="@+id/price"

@@ -2,7 +2,6 @@ package pl.edu.pb.wi.projekt.barcodereader.activities;
 
 import android.app.DatePickerDialog;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -22,20 +21,22 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import pl.edu.pb.wi.projekt.barcodereader.DeviceInfo;
 import pl.edu.pb.wi.projekt.barcodereader.Person;
 import pl.edu.pb.wi.projekt.barcodereader.R;
 import pl.edu.pb.wi.projekt.barcodereader.Section;
 import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.ValidateException;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchItemFragment;
 
-public class AddItemActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AddItemActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, View.OnClickListener {
     private String barcode;
 
     private EditText inventoryName;
     private EditText serialNumber;
     private EditText partName;
-    private EditText addDate;
+    private Button addDate;
     private EditText price;
     private EditText amount;
     private EditText room;
@@ -50,15 +51,13 @@ public class AddItemActivity extends AppCompatActivity implements DatePickerDial
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-        Calendar c = Calendar.getInstance();
-        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, c.get(Calendar.YEAR) + 1900, c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
 
         barcode = getIntent().getStringExtra(SearchItemFragment.BARCODE_KEY);
         inventoryNumber = (TextView) findViewById(R.id.inventoryNumber);
         inventoryName = (EditText) findViewById(R.id.inventoryName);
         serialNumber = (EditText) findViewById(R.id.serialNumber);
         partName = (EditText) findViewById(R.id.partName);
-        addDate = (EditText) findViewById(R.id.addedDate);
+        addDate = (Button) findViewById(R.id.addedDate);
         price = (EditText) findViewById(R.id.price);
         amount = (EditText) findViewById(R.id.amount);
         room = (EditText) findViewById(R.id.room);
@@ -70,13 +69,8 @@ public class AddItemActivity extends AppCompatActivity implements DatePickerDial
         person.setAdapter(getPersonsContent());
         section.setAdapter(getSectionContent());
         inventoryNumber.setText(barcode);
-        addDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datePickerDialog.show();
-            }
-        });
-        addDate.setText(dateFormat.format(c.getTime()));
+        addDate.setOnClickListener(this);
+        addDate.setText(dateFormat.format(Calendar.getInstance().getTime()));
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,21 +115,21 @@ public class AddItemActivity extends AppCompatActivity implements DatePickerDial
     }
 
     private void saveItem() {
-        if (validate()) {
-            ContentValues values = new ContentValues();
-            values.put(Contract.Devices.COLUMN_INVENTARY_NR, barcode);
-            values.put(Contract.Devices.COLUMN_INVENTARY_NAME, inventoryName.getText().toString());
-            values.put(Contract.Devices.COLUMN_SERIAL_NR, serialNumber.getText().toString());
-            values.put(Contract.Devices.COLUMN_PART_NAME, partName.getText().toString());
-            values.put(Contract.Devices.COLUMN_RECIVE_DATE, addDate.getText().toString());
-            values.put(Contract.Devices.COLUMN_PART_PRICE, price.getText().toString());
-            values.put(Contract.Devices.COLUMN_ACOUNTANCY_AMOUNT, amount.getText().toString());
-            values.put(Contract.Devices.COLUMN_ROOM, room.getText().toString());
-            values.put(Contract.Devices.COLUMN_COMMENTS, comments.getText().toString());
-            values.put(Contract.Devices.COLUMN_PERSON_ID, ((Person) person.getSelectedItem()).getId());
-            values.put(Contract.Devices.COLUMN_SECTION_ID, ((Section) section.getSelectedItem()).getId());
-
-            getContentResolver().insert(Contract.Devices.Search.CONTENT_URI, values);
+        try {
+            DeviceInfo info = new DeviceInfo();
+            info.setBarcode(barcode);
+            info.setSetName(inventoryName.getText().toString());
+            info.setSerialNr(serialNumber.getText().toString());
+            info.setPartName(partName.getText().toString());
+            info.setReciveDate(addDate.getText().toString());
+            info.setPrice(price.getText().toString());
+            info.setAmount(amount.getText().toString());
+            info.setRoom(room.getText().toString());
+            info.setComments(comments.getText().toString());
+            info.setPersonId(((Person) person.getSelectedItem()).getId() + "");
+            info.setSectionId(((Section) section.getSelectedItem()).getId() + "");
+            info.validate();
+            getContentResolver().insert(Contract.Devices.Search.CONTENT_URI, info.toContentValues());
             Utils.showInfoDialog(this, "", getString(R.string.item_added_message), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -147,13 +141,10 @@ public class AddItemActivity extends AppCompatActivity implements DatePickerDial
                     startActivity(intent);
                 }
             });
-        } else {
-            Utils.showInfoDialog(this, getString(R.string.validation_dialog_title), "[set message]");
+        } catch (ValidateException e) {
+            e.printStackTrace();
+            Utils.showInfoDialog(this, getString(R.string.validation_dialog_title), getString(e.getId()));
         }
-    }
-
-    private boolean validate() {
-        return true;
     }
 
     @Override
@@ -161,5 +152,13 @@ public class AddItemActivity extends AppCompatActivity implements DatePickerDial
         Calendar c = Calendar.getInstance();
         c.set(year, month, dayOfMonth);
         addDate.setText(dateFormat.format(c.getTime()));
+    }
+
+    @Override
+    public void onClick(View view) {
+        Calendar c = Calendar.getInstance();
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        datePickerDialog.getDatePicker().setMaxDate(c.getTimeInMillis());
+        datePickerDialog.show();
     }
 }

@@ -1,6 +1,6 @@
 package pl.edu.pb.wi.projekt.barcodereader.activities;
 
-import android.app.SearchManager;
+import android.app.DatePickerDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
@@ -8,15 +8,18 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import pl.edu.pb.wi.projekt.barcodereader.Person;
@@ -26,7 +29,7 @@ import pl.edu.pb.wi.projekt.barcodereader.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchItemFragment;
 
-public class AddItemActivity extends AppCompatActivity {
+public class AddItemActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     private String barcode;
 
     private EditText inventoryName;
@@ -41,11 +44,15 @@ public class AddItemActivity extends AppCompatActivity {
     private Spinner person;
     private Spinner section;
     private Button save;
+    private DateFormat dateFormat = SimpleDateFormat.getDateInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+        Calendar c = Calendar.getInstance();
+        final DatePickerDialog datePickerDialog = new DatePickerDialog(this, this, c.get(Calendar.YEAR) + 1900, c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+
         barcode = getIntent().getStringExtra(SearchItemFragment.BARCODE_KEY);
         inventoryNumber = (TextView) findViewById(R.id.inventoryNumber);
         inventoryName = (EditText) findViewById(R.id.inventoryName);
@@ -63,6 +70,13 @@ public class AddItemActivity extends AppCompatActivity {
         person.setAdapter(getPersonsContent());
         section.setAdapter(getSectionContent());
         inventoryNumber.setText(barcode);
+        addDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+        addDate.setText(dateFormat.format(c.getTime()));
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -140,5 +154,12 @@ public class AddItemActivity extends AppCompatActivity {
 
     private boolean validate() {
         return true;
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(year, month, dayOfMonth);
+        addDate.setText(dateFormat.format(c.getTime()));
     }
 }

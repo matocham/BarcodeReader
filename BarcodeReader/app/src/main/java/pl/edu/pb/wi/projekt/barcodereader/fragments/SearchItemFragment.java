@@ -187,7 +187,7 @@ public class SearchItemFragment extends Fragment implements LoaderManager.Loader
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         content.removeAllViews();
 
-        String number = Contract.SummaryData.ALIASES[1].substring(1, Contract.SummaryData.ALIASES[1].length() - 1);
+        String number = Contract.SummaryData.ALIASES[0].substring(1, Contract.SummaryData.ALIASES[0].length() - 1);
         String person = Contract.SummaryData.ALIASES[Contract.SummaryData.ALIASES.length - 2];
         person = person.substring(1, person.length() - 1);
 

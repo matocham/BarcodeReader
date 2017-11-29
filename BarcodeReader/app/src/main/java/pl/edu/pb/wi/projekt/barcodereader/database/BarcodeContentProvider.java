@@ -175,7 +175,7 @@ public class BarcodeContentProvider extends ContentProvider {
     private String[] buildProjection() {
         return new String[]{Contract.Devices.COLUMN_ID + AS_PART + ID_ALIAS,
                 Contract.Devices.COLUMN_PART_NAME + AS_PART + SearchManager.SUGGEST_COLUMN_TEXT_1,
-                Contract.Devices.COLUMN_SERIAL_NR + AS_PART + SearchManager.SUGGEST_COLUMN_TEXT_2,
+                Contract.Devices.COLUMN_INVENTARY_NR + AS_PART + SearchManager.SUGGEST_COLUMN_TEXT_2,
                 Contract.Devices.COLUMN_ID + AS_PART + SearchManager.SUGGEST_COLUMN_INTENT_DATA};
     }
 }

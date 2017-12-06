@@ -20,13 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.ScreenUtils;
-import pl.edu.pb.wi.projekt.barcodereader.ServerConst;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.asyncTasks.CopyDatabaseAsyncTask;
-import pl.edu.pb.wi.projekt.barcodereader.asyncTasks.DownloadDatabaseAsyncTask;
 import pl.edu.pb.wi.projekt.barcodereader.database.ColumnNotFoundException;
 import pl.edu.pb.wi.projekt.barcodereader.database.TableNotFoundException;
+import pl.edu.pb.wi.projekt.barcodereader.utils.ScreenUtils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 
 /**
  * Created by Mateusz on 27.09.2016.
@@ -43,7 +41,7 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public boolean hasCamera;
     public boolean hasFlash;
     public boolean hasAutofocus;
-    CharSequence[] piscutreSizes;
+    CharSequence[] picutreSizes;
     CharSequence[] flashlightModes;
     CharSequence[] focusModes;
 
@@ -51,8 +49,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     String[] acceptableFlash = {Camera.Parameters.FLASH_MODE_AUTO, Camera.Parameters.FLASH_MODE_OFF, Camera.Parameters.FLASH_MODE_TORCH};
 
     Preference databasePreference;
-    Preference userAccountPreference;
-    Preference databaseOnlinePreference;
     ListPreference cameraSizesPref;
     ListPreference autofocusPref;
     ListPreference flashlightPref;
@@ -62,34 +58,16 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
-                case ServerConst.CONNECTION_TIMEOUT:
-                    Utils.showInfoDialog(context, context.getString(R.string.connection_error), context.getString(R.string.connection_timeout));
-                    break;
-                case ServerConst.NO_INTERNET:
-                    Utils.showInfoDialog(context, context.getString(R.string.connection_error), context.getString(R.string.no_internet));
-                    break;
-                case ServerConst.AUTH_ERROR:
-                    Utils.showInfoDialog(context, getString(R.string.auth_error_title),getString(R.string.auth_error_message));
-                    break;
                 case COPY_ERROR:
                     Utils.showInfoDialog(context, context.getString(R.string.copy_error), context.getString(R.string.load_database_error));
                     break;
                 case DB_COLUMN_ERROR:
                     ColumnNotFoundException exColumn = (ColumnNotFoundException) msg.obj;
-                    Utils.showInfoDialog(context, context.getString(R.string.validate_error), context.getString(R.string.column_not_found,exColumn.getColumnName(),exColumn.getTableName()));
+                    Utils.showInfoDialog(context, context.getString(R.string.validate_error), context.getString(R.string.column_not_found, exColumn.getColumnName(), exColumn.getTableName()));
                     break;
                 case DB_TABLE_ERROR:
                     TableNotFoundException exTable = (TableNotFoundException) msg.obj;
-                    Utils.showInfoDialog(context, context.getString(R.string.validate_error), context.getString(R.string.table_not_found,exTable.getTableName()));
-                    break;
-                case ServerConst.IO_ERROR:
-                    Utils.showInfoDialog(context, context.getString(R.string.file_send_error), context.getString(R.string.server_connection_error));
-                    break;
-                case ServerConst.DOWNLOAD_OK:
-                    String summary = context.getString(R.string.downloaded_online);
-                    databasePreference.setSummary(summary);
-                    databasePreference.getEditor().putString(getResources().getString(R.string.prefs_storage_source_key), summary).commit();
-                    Utils.showInfoDialog(context, getString(R.string.download_ok_title), getString(R.string.download_ok_message));
+                    Utils.showInfoDialog(context, context.getString(R.string.validate_error), context.getString(R.string.table_not_found, exTable.getTableName()));
                     break;
                 case COPY_OK:
                     String name = (String) msg.obj;
@@ -146,29 +124,6 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             }
         });
 
-        databaseOnlinePreference = findPreference(getResources().getString(R.string.prefs_database_get_online_key));
-        databaseOnlinePreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                new DownloadDatabaseAsyncTask(context, handler).execute();
-                return true;
-            }
-        });
-        if(!Utils.checkUserVerified(context)){
-            databaseOnlinePreference.setEnabled(false);
-        }
-
-        userAccountPreference = findPreference(getResources().getString(R.string.prefs_account_reset_def));
-        userAccountPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            @Override
-            public boolean onPreferenceClick(Preference preference) {
-                Utils.resetUserData(context);
-                databaseOnlinePreference.setEnabled(false);
-                Utils.showInfoDialog(context,getString(R.string.dialog_acconut_reset_title), getString(R.string.dialog_account_reset_message));
-                return true;
-            }
-        });
-
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         String database = sharedPref.getString(getResources().getString(R.string.prefs_storage_source_key), "");
         if (database.length() > 0) {
@@ -201,12 +156,12 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     }
 
     private void loadCameraSizes(Camera cam) {
-        piscutreSizes = getCameraSizes(cam).toArray(new CharSequence[0]);
-        cameraSizesPref.setEntries(piscutreSizes);
-        cameraSizesPref.setEntryValues(piscutreSizes);
+        picutreSizes = getCameraSizes(cam).toArray(new CharSequence[0]);
+        cameraSizesPref.setEntries(picutreSizes);
+        cameraSizesPref.setEntryValues(picutreSizes);
 
-        if (piscutreSizes.length > 0 && cameraSizesPref.getValue() == null) {
-            cameraSizesPref.setValue(piscutreSizes[0].toString());
+        if (picutreSizes.length > 0 && cameraSizesPref.getValue() == null) {
+            cameraSizesPref.setValue(picutreSizes[0].toString());
         }
         cameraSizesPref.setSummary(cameraSizesPref.getValue());
     }
@@ -257,16 +212,16 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-        Log.e(TAG, "key: "+key);
+        Log.e(TAG, "key: " + key);
 
-        if(key.equals(getResources().getString(R.string.prefs_account_reset_def))){
+        if (key.equals(getResources().getString(R.string.prefs_account_reset_def))) {
             return;
         }
 
         Preference pref = findPreference(key);
-    if(pref == null) {
-        return;
-    }
+        if (pref == null) {
+            return;
+        }
         if (key.equals(getResources().getString(R.string.prefs_camera_autofocus_key)) ||
                 key.equals(getResources().getString(R.string.prefs_camera_torch_key))) {
             pref.setSummary(WordUtils.capitalize(sharedPreferences.getString(key, "").replace("-", " ")));
@@ -316,9 +271,5 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    public void enableOnlineDatabaseDownload(boolean status) {
-        databaseOnlinePreference.setEnabled(status);
     }
 }

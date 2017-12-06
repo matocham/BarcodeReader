@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader;
+package pl.edu.pb.wi.projekt.barcodereader.models;
 
 /**
  * Created by Mateusz on 04.10.2016.

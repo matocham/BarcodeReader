@@ -5,23 +5,18 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Environment;
 import android.os.Handler;
-import android.util.Log;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import pl.edu.pb.wi.projekt.barcodereader.ServerConst;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.database.BcDatabaseHelper;
 import pl.edu.pb.wi.projekt.barcodereader.database.ColumnNotFoundException;
 import pl.edu.pb.wi.projekt.barcodereader.database.TableNotFoundException;
-import pl.edu.pb.wi.projekt.barcodereader.fragments.LoginDialogFragment;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SettingsFragment;
 
 /**

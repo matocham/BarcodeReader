@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader.interfaces;
+package pl.edu.pb.wi.projekt.barcodereader;
 
 /**
  * Listener that will be informed about scanning results, provides information required to start scanning

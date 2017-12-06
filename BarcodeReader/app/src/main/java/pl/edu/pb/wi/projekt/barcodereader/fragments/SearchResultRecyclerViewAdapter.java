@@ -9,7 +9,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.SearchResultRow;
+import pl.edu.pb.wi.projekt.barcodereader.models.SearchResultRow;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchResultFragment.OnListFragmentInteractionListener;
 
 public class SearchResultRecyclerViewAdapter extends RecyclerView.Adapter<SearchResultRecyclerViewAdapter.ViewHolder> {

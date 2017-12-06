@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.SearchResultRow;
+import pl.edu.pb.wi.projekt.barcodereader.models.SearchResultRow;
 import pl.edu.pb.wi.projekt.barcodereader.activities.SearchActivity;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 

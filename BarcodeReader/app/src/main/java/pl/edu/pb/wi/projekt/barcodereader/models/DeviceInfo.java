@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader;
+package pl.edu.pb.wi.projekt.barcodereader.models;
 
 import android.content.ContentValues;
 
@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import pl.edu.pb.wi.projekt.barcodereader.R;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
+import pl.edu.pb.wi.projekt.barcodereader.utils.ValidateException;
 
 /**
  * Created by Mateusz on 29.11.2017.

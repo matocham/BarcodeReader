@@ -15,9 +15,9 @@ import android.widget.FrameLayout;
 import java.util.List;
 
 import pl.edu.pb.wi.projekt.barcodereader.CameraPreview;
-import pl.edu.pb.wi.projekt.barcodereader.ScreenUtils;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
-import pl.edu.pb.wi.projekt.barcodereader.interfaces.ICameraDecoder;
+import pl.edu.pb.wi.projekt.barcodereader.utils.ScreenUtils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.ICameraDecoder;
 import pl.edu.pb.wi.projekt.barcodereader.R;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.detector.DetectorThread;
 

@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader;
+package pl.edu.pb.wi.projekt.barcodereader.utils;
 
 import android.content.Context;
 import android.content.res.Configuration;

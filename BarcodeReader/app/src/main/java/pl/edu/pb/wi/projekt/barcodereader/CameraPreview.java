@@ -16,7 +16,7 @@ import java.io.IOException;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.detector.Barcode;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.detector.DetectorThread;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.StorageConventer;
-import pl.edu.pb.wi.projekt.barcodereader.interfaces.ICameraDecoder;
+import pl.edu.pb.wi.projekt.barcodereader.utils.ScreenUtils;
 
 /**
  * Created by Mateusz on 12.05.2016.

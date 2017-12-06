@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader;
+package pl.edu.pb.wi.projekt.barcodereader.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,6 +40,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import pl.edu.pb.wi.projekt.barcodereader.R;
+import pl.edu.pb.wi.projekt.barcodereader.models.SearchResultRow;
 import pl.edu.pb.wi.projekt.barcodereader.database.BcDatabaseHelper;
 import pl.edu.pb.wi.projekt.barcodereader.database.ColumnNotFoundException;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
@@ -121,40 +123,6 @@ public class Utils {
         return serverAddressSet;
     }
 
-    public static void setServerSet(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putBoolean(context.getResources().getString(R.string.prefs_key_server_set), true).commit();
-    }
-
-    public static void resetUserData(Context context) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putBoolean(context.getResources().getString(R.string.user_verified), false).commit();
-    }
-
-    public static void setServerAddress(Context context, String address) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putString(context.getResources().getString(R.string.prefs_key_server_address), address).commit();
-    }
-
-    public static void saveUserCredentials(Context context, String username, String password){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPref.edit().putString(context.getString(R.string.username_pref_key),username)
-                .putString(context.getString(R.string.password_pref_key),encrypt(password)).commit();
-    }
-
-    public static String getServerAuthority(Context context){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPref.getString(context.getString(R.string.prefs_key_server_address),"");
-    }
-
-    public static String[] getUserCredentials(Context context){
-        String cridentials []= new String[2];
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-        cridentials[0] = sharedPref.getString(context.getString(R.string.username_pref_key),"");
-        cridentials[1] = sharedPref.getString(context.getString(R.string.password_pref_key),"");
-        return cridentials;
-    }
-
     public static AlertDialog showProgressDialog(Context context, String title, String message) {
         ProgressDialog dialog = ProgressDialog.show(context, title, message, true, false);
         return dialog;
@@ -220,34 +188,6 @@ public class Utils {
         msg.what = what;
         msg.obj = object;
         return msg;
-    }
-
-    public static boolean getNetworkStatus(Context context) {
-        ConnectivityManager connMgr = (ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnected();
-    }
-
-    /**
-     * write user credentials to request body
-     * @param context
-     * @param outputStream
-     */
-    public static void fillSendData(Context context, OutputStream outputStream) {
-        String userInfo[] = getUserCredentials(context);
-        JSONObject obj = new JSONObject();
-
-        try {
-            obj.put("login", userInfo[0]);
-            obj.put("password", userInfo[1]);
-            outputStream.write(obj.toString().getBytes(Charset.forName("UTF-8")));
-            outputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     public static boolean checkCameraHardware(Context context) {

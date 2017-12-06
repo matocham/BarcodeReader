@@ -2,7 +2,6 @@ package pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.detector;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.util.Log;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -11,7 +10,7 @@ import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.ColorConventer;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.StorageConventer;
 

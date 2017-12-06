@@ -9,12 +9,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.decoder.Reader2DThreshold;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.EdgeDetector;
-import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.Histogram;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.LinesEditor;
-import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.MISbinarization;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.MorphologyFilters;
 import pl.edu.pb.wi.projekt.barcodereader.barcodeProcessing.imageProcessing.Sharpen;
 

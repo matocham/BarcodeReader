@@ -1,4 +1,4 @@
-package pl.edu.pb.wi.projekt.barcodereader;
+package pl.edu.pb.wi.projekt.barcodereader.utils;
 
 /**
  * Created by Mateusz on 29.11.2017.

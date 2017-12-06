@@ -1,7 +1,6 @@
 package pl.edu.pb.wi.projekt.barcodereader.fragments;
 
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ContentUris;
 import android.content.Intent;
@@ -23,7 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.activities.AddItemActivity;
 import pl.edu.pb.wi.projekt.barcodereader.activities.SearchActivity;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;

@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.SearchResultRow;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.models.SearchResultRow;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchItemFragment;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchResultFragment;
 

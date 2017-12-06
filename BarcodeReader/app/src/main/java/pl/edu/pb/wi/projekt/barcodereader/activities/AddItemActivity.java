@@ -21,12 +21,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import pl.edu.pb.wi.projekt.barcodereader.DeviceInfo;
-import pl.edu.pb.wi.projekt.barcodereader.Person;
+import pl.edu.pb.wi.projekt.barcodereader.models.DeviceInfo;
+import pl.edu.pb.wi.projekt.barcodereader.models.Person;
 import pl.edu.pb.wi.projekt.barcodereader.R;
-import pl.edu.pb.wi.projekt.barcodereader.Section;
-import pl.edu.pb.wi.projekt.barcodereader.Utils;
-import pl.edu.pb.wi.projekt.barcodereader.ValidateException;
+import pl.edu.pb.wi.projekt.barcodereader.models.Section;
+import pl.edu.pb.wi.projekt.barcodereader.utils.Utils;
+import pl.edu.pb.wi.projekt.barcodereader.utils.ValidateException;
 import pl.edu.pb.wi.projekt.barcodereader.database.Contract;
 import pl.edu.pb.wi.projekt.barcodereader.fragments.SearchItemFragment;
 

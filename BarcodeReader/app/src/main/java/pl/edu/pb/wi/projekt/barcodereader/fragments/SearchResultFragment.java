@@ -50,8 +50,8 @@ public class SearchResultFragment extends Fragment {
 
         ContentResolver contentResolver = getContext().getContentResolver();
         Cursor cursor = contentResolver.query(Contract.Devices.Search.CONTENT_URI,
-                new String[]{Contract.Devices.COLUMN_ID, Contract.Devices.COLUMN_SERIAL_NR,
-                        Contract.Devices.COLUMN_PART_NAME}, Contract.Devices.COLUMN_SERIAL_NR + " LIKE ?||'%'",
+                new String[]{Contract.Devices.COLUMN_ID, Contract.Devices.COLUMN_INVENTARY_NR,
+                        Contract.Devices.COLUMN_PART_NAME}, Contract.Devices.COLUMN_INVENTARY_NR + " LIKE ?||'%'",
                 new String[]{query}, Contract.Devices.SORT_ORDER_DEFAULT);
 
         searchResults = new ArrayList<>();
